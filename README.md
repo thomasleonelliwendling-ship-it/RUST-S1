@@ -1,39 +1,38 @@
-# Mini Git – Implémentation en Rust
+# Mini Git – Rust Implementation
 
-Ce projet est une implémentation simplifiée de certaines commandes internes de Git, réalisée en Rust dans le cadre d’un exercice pédagogique.
+This project is a simplified implementation of some internal Git commands, written in Rust as part of a learning exercise.
 
-## Fonctionnalités implémentées
+## Implemented Features
 
-Les commandes suivantes sont supportées :
+The following commands are supported:
 
 - `hash-object -w <file>`  
-  Crée un blob à partir d’un fichier et l’écrit dans `.git/objects`.
+  Creates a blob object from a file and writes it to `.git/objects`.
 
 - `ls-tree --name-only <tree_sha>`  
-  Liste les entrées d’un tree Git (noms uniquement).
+  Lists the entries of a Git tree object (names only).
 
 - `write-tree`  
-  Crée récursivement un tree à partir du contenu du répertoire courant (en ignorant `.git`).
+  Recursively creates a tree object from the contents of the current working directory (ignoring `.git`).
 
 - `commit-tree <tree_sha> -p <parent_sha> -m <message>`  
-  Crée un commit à partir d’un tree, avec un parent et un message.
+  Creates a commit object from a tree, with a parent commit and a message.
 
-## Organisation du projet
+## Project Structure
 
-- Toute la logique est regroupée dans un seul fichier `main.rs`
-- Les objets Git (blob, tree, commit) sont écrits dans `.git/objects` conformément au format Git
-- Les entrées sont triées alphabétiquement, comme dans Git
+- All logic is contained in a single `main.rs` file
+- Git objects (blob, tree, commit) are written to `.git/objects` using the official Git formats
+- Tree entries are sorted alphabetically, matching Git’s behavior
 
-## Hypothèses et simplifications
+## Assumptions and Simplifications
 
-- Tous les fichiers du répertoire de travail sont considérés comme « staged »
-- Un seul parent est accepté pour `commit-tree`
-- Le nom, l’email et le timestamp du commit sont codés en dur
-- Le message de commit est sur une seule ligne
+- All files in the working directory are considered staged
+- Only one parent commit is supported
+- Author name, email, and timestamp are hardcoded
+- Commit messages are limited to a single line
 
-## Compilation et exécution
+## Build and Run
 
 ```bash
 cargo build
-cargo run -- <commande>
-# RUST-S1
+cargo run -- <command>
