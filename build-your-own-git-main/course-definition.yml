@@ -1,0 +1,139 @@
+slug: "git"
+name: "Build your own Git"
+short_name: "Git"
+release_status: "live"
+
+# This is shown on the course overview page. Markdown supported, recommended length ~40 words.
+#
+# Recommended format:
+#
+# > ABC is <whatever>. In this challenge, you'll build your own ABC that's capable of D, E, F and G.
+# >
+# > Along the way, we'll learn about X, Y, Z and more.
+#
+# Example:
+#
+# > Redis is an in-memory data structure store often used as a database, cache, message broken and streaming engine. In this challenge
+# > you'll build your own Redis server that is capable of serving basic commands, reading RDB files and more.
+# >
+# > Along the way, you'll learn about TCP servers, the Redis Protocol and more.
+description_md: |-
+  Git is a version control system used to track changes in source code. In this challenge, you'll build your own Git implementation that
+  is capable of cloning a public repository from GitHub.
+
+  Along the way, you'll learn about the .git directory, Git objects, plumbing commands and more.
+
+# Keep this under 70 characters
+short_description_md: |-
+  Learn about git objects, plumbing commands and more
+
+completion_percentage: 10
+
+languages:
+  - slug: "c"
+  - slug: "cpp"
+  - slug: "csharp"
+    release_status: "beta"
+  - slug: "go"
+  - slug: "haskell"
+  - slug: "java"
+    release_status: "beta"
+  - slug: "javascript"
+  - slug: "python"
+  - slug: "ruby"
+  - slug: "rust"
+  - slug: "kotlin"
+  - slug: "typescript"
+    release_status: "beta"
+  - slug: "zig"
+    release_status: "beta"
+
+marketing:
+  difficulty: hard
+  sample_extension_idea_title: "Push to remote repository"
+  sample_extension_idea_description: "A Git implementation that can push changes to a remote repository"
+  testimonials:
+    - author_name: "Beyang Liu"
+      author_description: "CTO, Sourcegraph"
+      author_avatar: "https://codecrafters.io/images/external/testimonials/beyang-liu.jpeg"
+      link: "https://twitter.com/beyang/status/1271225214886506496"
+      text: |-
+        Found out about CodeCrafters from a colleague. It's a tutorial site that has you build your own version of things
+        like Git and Docker from scratch. A cool way to build a stronger mental model of how those tools work.
+    - author_name: "Lacronicus"
+      author_description: "Reddit user"
+      author_avatar: "https://codecrafters.io/images/external/testimonials/reddit-user.png"
+      link: "https://www.reddit.com/r/programming/comments/fefrka/advanced_programming_challenges/fjoxu7n/"
+      text: |-
+        Never in my life have I needed something so much and not known until I received it.
+
+stages:
+  - slug: "gg4"
+    name: "Initialize the .git directory"
+    difficulty: very_easy
+    marketing_md: |-
+      In this stage, you'll implement the `git init` command. You'll initialize
+      a git repository by creating a `.git` directory and some files inside it.
+    tester_source_code_url: "https://github.com/codecrafters-io/git-tester/blob/03984478122959f23a866a0df102413a5ac08e67/internal/stage_init.go#L12"
+
+  - slug: "ic4"
+    name: "Read a blob object"
+    difficulty: medium
+    marketing_md: |-
+      In this stage, you'll read a blob from your git repository by fetching its
+      contents from the `.git/objects` directory.
+
+      You'll do this using the first of multiple ["plumbing"
+      commands](https://git-scm.com/book/en/v2/Git-Internals-Plumbing-and-Porcelain)
+      we'll encounter in this challenge: [`git
+      cat-file`](https://git-scm.com/docs/git-cat-file).
+    tester_source_code_url: "https://github.com/codecrafters-io/git-tester/blob/03984478122959f23a866a0df102413a5ac08e67/internal/stage_read_blob.go#L18"
+
+  - slug: "jt4"
+    name: "Create a blob object"
+    difficulty: medium
+    marketing_md: |-
+      In the previous stage, we learnt how to read a blob. In this stage, we'll
+      persist a blob by implementing the `git hash-object` command.
+    tester_source_code_url: "https://github.com/codecrafters-io/git-tester/blob/master/internal/stage_create_blob.go"
+
+  - slug: "kp1"
+    name: "Read a tree object"
+    difficulty: medium
+    marketing_md: |-
+      Now that we've learnt how to read/write blobs, let's move onto our next
+      Git object: [the tree](https://developer.github.com/v3/git/trees/). In
+      this stage, you'll read a tree object from storage by implementing the
+      `git ls-tree` command.
+    tester_source_code_url: "https://github.com/codecrafters-io/git-tester/blob/03984478122959f23a866a0df102413a5ac08e67/internal/stage_read_tree.go#L20"
+
+  - slug: "fe4"
+    name: "Write a tree object"
+    difficulty: medium
+    marketing_md: |-
+      In this stage, you'll write a tree to git storage by implementing the [`git
+      write-tree`](https://git-scm.com/docs/git-write-tree) command.
+
+      To keep things simple, we won't implement an `index`, we'll just assume
+      that all changes in the worktree are staged.
+    tester_source_code_url: "https://github.com/codecrafters-io/git-tester/blob/03984478122959f23a866a0df102413a5ac08e67/internal/stage_write_tree.go#L21"
+
+  - slug: "jm9"
+    name: "Create a commit"
+    difficulty: medium
+    marketing_md: |-
+      Let's move on to the last git object we'll be dealing with in this
+      challenge: the commit. In this stage, you'll create a commit by
+      implementing the [`git commit-tree`](https://git-scm.com/docs/git-commit-tree)
+      command.
+    tester_source_code_url: "https://github.com/codecrafters-io/git-tester/blob/master/internal/stage_create_commit.go"
+
+  - slug: "mg6"
+    name: "Clone a repository"
+    difficulty: hard
+    marketing_md: |-
+      This is the last stage of the challenge, and probably the hardest! In this
+      stage, you'll clone a public repository from GitHub. To do this, you'll
+      use one of Git's [Transfer
+      protocols](https://git-scm.com/book/en/v2/Git-Internals-Transfer-Protocols).
+    tester_source_code_url: "https://github.com/codecrafters-io/git-tester/blob/03984478122959f23a866a0df102413a5ac08e67/internal/stage_clone_repository.go#L80"
